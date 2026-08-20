@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Nay Thar Htet — developer working with Python, Flask, product design, and AI-assisted development workflows.">
+    <meta name="theme-color" content="#111111">
+    <title>Nay Thar Htet | Developer Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="brand" href="#top" aria-label="Nay Thar Htet home">NTH<span>.</span></a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#projects">Work</a>
+                <a href="#languages">Languages</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero section-shell" id="top">
+            <div class="hero-copy">
+                <p class="eyebrow">Developer · Product-minded builder</p>
+                <h1>Building useful digital products with code, design, and AI.</h1>
+                <p class="hero-intro">
+                    Hi, I’m <strong>Nay Thar Htet</strong>. I build practical web experiences with Python and Flask,
+                    combining technical execution with customer-facing experience.
+                </p>
+                <div class="hero-actions">
+                    <a class="button button-primary" href="#projects">View selected work</a>
+                    <a class="button button-secondary" href="mailto:naythar3111@gmail.com">Email me</a>
+                </div>
+            </div>
+
+            <div class="hero-visual" aria-label="Portrait of Nay Thar Htet">
+                <div class="window-frame">
+                    <div class="window-topbar" aria-hidden="true">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="window-body">
+                        <div class="portrait-wrap">
+                            <img src="{{ url_for('static', filename='profile.webp') }}" alt="Nay Thar Htet" class="profile-pic" width="900" height="1012">
+                        </div>
+                        <div class="hero-meta">
+                            <p class="hero-meta-label">Current focus</p>
+                            <p>Flask web apps · AI-assisted workflows · product-driven UX thinking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about section-shell" id="about">
+            <div class="section-heading">
+                <p class="section-number">01</p>
+                <div>
+                    <h2>About</h2>
+                    <p class="section-subtitle">A practical builder with a customer-first mindset.</p>
+                </div>
+            </div>
+            <div class="about-content">
+                <p>{{ bio }}</p>
+                <p class="about-note">
+                    I’m especially interested in projects where technology needs to be understandable,
+                    useful, and grounded in a real user problem.
+                </p>
+            </div>
+        </section>
+
+        <section class="projects section-shell" id="projects">
+            <div class="section-heading">
+                <p class="section-number">02</p>
+                <div>
+                    <h2>Selected work</h2>
+                    <p class="section-subtitle">Projects across development, AI, and product thinking.</p>
+                </div>
+            </div>
+
+            <div class="project-grid">
+                {% for project in projects %}
+                <article class="project-card">
+                    <div class="project-card-top">
+                        <span class="project-tag">Featured project</span>
+                        <span class="project-meta">{{ '%02d' % loop.index }}</span>
+                    </div>
+                    <h3>{{ project.name }}</h3>
+                    <p class="project-tech">{{ project.tech }}</p>
+                    <p class="project-description">{{ project.description }}</p>
+                    <div class="project-card-bottom">
+                        {% if project.link %}
+                        <a class="project-link" href="{{ project.link }}" target="_blank" rel="noopener noreferrer">
+                            {{ project.cta }} <span aria-hidden="true">↗</span>
+                        </a>
+                        {% endif %}
+                        {% if project.status %}
+                        <span class="project-status">{{ project.status }}</span>
+                        {% endif %}
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+
+        <section class="languages section-shell" id="languages">
+            <div class="section-heading">
+                <p class="section-number">03</p>
+                <div>
+                    <h2>Languages</h2>
+                    <p class="section-subtitle">Communication across technical and customer-facing work.</p>
+                </div>
+            </div>
+            <div class="language-grid">
+                {% for language in languages %}
+                <div class="language-item">
+                    <span class="language-index">0{{ loop.index }}</span>
+                    <span>{{ language }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+        <div class="section-shell footer-shell">
+            <p class="eyebrow footer-eyebrow">Have a project or opportunity?</p>
+            <h2>Let’s build something useful.</h2>
+            <a class="footer-email" href="mailto:naythar3111@gmail.com">naythar3111@gmail.com <span aria-hidden="true">↗</span></a>
+            <div class="footer-bottom">
+                <p>© 2026 Nay Thar Htet</p>
+                <p>Built with Flask · Render-ready</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
