@@ -3,7 +3,10 @@ services:
     name: nay-thar-portfolio
     runtime: python
     plan: free
-    buildCommand: pip install -r requirements.txt && echo "=== STATIC FILES ===" && ls -lah static
-    startCommand: gunicorn app:app
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 60 --access-logfile -
     healthCheckPath: /health
     autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.6

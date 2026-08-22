@@ -1,7 +1,10 @@
 import os
-from flask import Flask, render_template
+
+from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
+# Cache static assets (CSS, images) in browsers for 7 days
+app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 604800
 
 PROJECTS = [
     {
@@ -89,7 +92,26 @@ def home():
 
 @app.get("/health")
 def health():
-    return {"status": "ok"}, 200
+    return jsonify(status="ok"), 200
+
+
+@app.errorhandler(404)
+def not_found(_error):
+    return render_template("404.html"), 404
+
+
+@app.after_request
+def set_headers(response):
+    """Add baseline security headers and long-lived caching for static assets."""
+    response.headers.setdefault(
+        "Content-Security-Policy",
+        "default-src 'self'; img-src 'self' data:; style-src 'self'; "
+        "frame-ancestors 'none'; base-uri 'self'; form-action 'self'",
+    )
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    return response
 
 
 if __name__ == "__main__":

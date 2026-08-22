@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex">
+    <title>Page not found | Nay Thar Htet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=2">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+        <nav class="nav-shell" aria-label="Primary navigation">
+            <a class="brand" href="/" aria-label="Nay Thar Htet home">NTH<span>.</span></a>
+            <div class="nav-links">
+                <a href="/#about">About</a>
+                <a href="/#projects">Work</a>
+                <a href="/#languages">Languages</a>
+                <a href="/#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="section-shell not-found">
+            <p class="eyebrow">Error 404</p>
+            <h1>This page doesn’t exist.</h1>
+            <p class="hero-intro">
+                The page you’re looking for may have been moved or never existed.
+                Head back to the homepage to explore my work.
+            </p>
+            <div class="hero-actions">
+                <a class="button button-primary" href="/">Back to home</a>
+                <a class="button button-secondary" href="/#projects">View selected work</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="site-footer">
+        <div class="section-shell footer-shell">
+            <p class="eyebrow footer-eyebrow">Have a project or opportunity?</p>
+            <h2>Let’s build something useful.</h2>
+            <a class="footer-email" href="mailto:naythar3111@gmail.com">naythar3111@gmail.com <span aria-hidden="true">↗</span></a>
+            <div class="footer-bottom">
+                <p>© 2026 Nay Thar Htet</p>
+                <p>Built with Flask · Render-ready</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
